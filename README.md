@@ -1,4 +1,4 @@
-# Birth Quality Lifespan Fix
+# Cooler Orientation Alert
 
 This repository contains the source code for the RimWorld mod **Cooler Orientation Alert**.
 
