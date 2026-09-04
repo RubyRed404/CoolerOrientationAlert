@@ -58,7 +58,7 @@ namespace CoolerOrientationAlert
 
         private static bool LooksLikeCooler(ThingDef def)
         {
-            if (def == null || def.category != ThingCategory.Building)
+            if (def?.category != ThingCategory.Building)
             {
                 return false;
             }
@@ -68,23 +68,20 @@ namespace CoolerOrientationAlert
                 return true;
             }
 
-            if (def.PlaceWorkers != null)
+            for (int i = 0; i < def.PlaceWorkers?.Count; i++)
             {
-                for (int i = 0; i < def.PlaceWorkers.Count; i++)
+                if (def.PlaceWorkers[i] is PlaceWorker_Cooler)
                 {
-                    if (def.PlaceWorkers[i] is PlaceWorker_Cooler)
-                    {
-                        return true;
-                    }
+                    return true;
                 }
             }
 
-            if (def.comps != null && def.rotatable && def.building != null && def.building.canPlaceOverWall)
+            if (def.rotatable && def.building?.canPlaceOverWall is true)
             {
-                for (int i = 0; i < def.comps.Count; i++)
+                for (int i = 0; i < def.comps?.Count; i++)
                 {
                     CompProperties_TempControl temp = def.comps[i] as CompProperties_TempControl;
-                    if (temp != null && temp.energyPerSecond < 0f)
+                    if (temp?.energyPerSecond < 0f)
                     {
                         return true;
                     }
