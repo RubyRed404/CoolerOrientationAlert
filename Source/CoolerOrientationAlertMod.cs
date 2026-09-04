@@ -46,7 +46,7 @@ namespace CoolerOrientationAlert
             }
 
             Room coldRoom = coldCell.GetRoom(map);
-            if (coldRoom == null || coldRoom.UsesOutdoorTemperature)
+            if (coldRoom?.UsesOutdoorTemperature is not false)
             {
                 Messages.Message(
                     "CoolerColdSideOutdoorWarning".Translate(thingDef.LabelCap),
@@ -76,7 +76,7 @@ namespace CoolerOrientationAlert
                 }
             }
 
-            if (def.rotatable && def.building?.canPlaceOverWall is true)
+            if (def is {rotatable: true, building: {canPlaceOverWall: true}})
             {
                 for (int i = 0; i < def.comps?.Count; i++)
                 {
