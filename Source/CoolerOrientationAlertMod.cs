@@ -35,24 +35,14 @@ namespace CoolerOrientationAlert
             IntVec3 coldCell = c + IntVec3.South.RotatedBy(___placingRot);
 
             // Treat out-of-bounds cold side as invalid orientation.
-            if (!coldCell.InBounds(map))
+            if (!coldCell.InBounds(map) || coldCell.GetRoom(map)?.UsesOutdoorTemperature is not false)
             {
                 Messages.Message(
                     "CoolerColdSideOutdoorWarning".Translate(thingDef.LabelCap),
                     new TargetInfo(c, map),
                     MessageTypeDefOf.CautionInput,
                     historical: false);
-                return;
-            }
-
-            Room coldRoom = coldCell.GetRoom(map);
-            if (coldRoom?.UsesOutdoorTemperature is not false)
-            {
-                Messages.Message(
-                    "CoolerColdSideOutdoorWarning".Translate(thingDef.LabelCap),
-                    new TargetInfo(c, map),
-                    MessageTypeDefOf.CautionInput,
-                    historical: false);
+                
             }
         }
 
