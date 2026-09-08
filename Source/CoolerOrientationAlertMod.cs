@@ -66,7 +66,7 @@ namespace CoolerOrientationAlert
                 }
             }
 
-            if (def is {rotatable: true, building: {canPlaceOverWall: true}})
+            if (def is {rotatable: true, building.canPlaceOverWall: true})
             {
                 for (int i = 0; i < def.comps?.Count; i++)
                 {
